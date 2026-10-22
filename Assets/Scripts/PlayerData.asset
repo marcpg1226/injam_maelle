@@ -12,13 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9b32d2d516c39e44ad7908c5666800c, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
-  maxSpeed: 7
+  maxSpeed: 10
   acceleration: 5
   deceleration: 5
   detectionRadius: 0.1
   groundMask:
     serializedVersion: 2
     m_Bits: 64
-  jumpForce: 10
-  wallJumpForce: 5
+  jumpForce: 15
+  wallJumpForce: 10
   wallRayLength: 1
+  afterWallJumpTime: 0.4
+  wallSlideSpeed: 2
+  wallCoyoteTime: 0.2

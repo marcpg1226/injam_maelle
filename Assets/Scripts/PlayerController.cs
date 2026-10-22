@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,15 +8,22 @@ public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
     private InputSystem_Actions inputActions;
     private Rigidbody2D rb;
     public PlayerData data;
-    private bool isFacingRight;
-    bool canWallJump;
-    RaycastHit2D hit;
 
-    public bool isGround { get; set; }
     [SerializeField] private Transform groundChecker;
 
-    // -- VARIABLES
-    Vector2 playerMove;
+    // -- STATE
+    public bool isGround { get; private set; }
+    private bool isTouchingWall;
+    private int wallSide;               // -1 = pared a la izquierda, 1 = pared a la derecha
+    private bool isWallSliding;
+    private bool canMoveOnAir = true;
+    private bool isFacingRight = true;
+
+    // Coyote time para el walljump (opcional pero muy recomendable)
+    private float wallCoyoteCounter;
+
+    // -- INPUT
+    private Vector2 playerMove;
 
     void Awake()
     {
@@ -31,32 +39,72 @@ public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
     private void OnEnable() => inputActions.Player.Enable();
     private void OnDisable() => inputActions.Player.Disable();
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        CalculateMoveSpeed(playerMove);
         GroundDetector();
+        WallDetector();
+        HandleWallSlide();
+
+        if (canMoveOnAir)
+            CalculateMoveSpeed(playerMove);
     }
 
-    void Update()
-    {
-        Vector2 dir = GetPlayerDirection().normalized; 
-        hit = Physics2D.Raycast(transform.position, dir, data.wallRayLength, data.groundMask); 
-        // Debug.DrawRay usa (Origen, Dirección * Longitud, Color)
-        Debug.DrawRay(transform.position, dir * data.wallRayLength, Color.red);
-    } 
+    // ---------------- INPUT ----------------
 
     public void OnMove(InputAction.CallbackContext context)
     {
+        // Siempre leemos el input; el bloqueo se aplica en FixedUpdate
         playerMove = context.ReadValue<Vector2>();
+
+        if (playerMove.x > 0.05f) isFacingRight = true;
+        else if (playerMove.x < -0.05f) isFacingRight = false;
     }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+
+        if (isGround)
+        {
+            Jump();
+        }
+        else if (wallCoyoteCounter > 0f)
+        {
+            WallJump();
+        }
+    }
+
+    // ---------------- DETECCIÓN ----------------
 
     private void GroundDetector()
     {
         isGround = Physics2D.OverlapCircle(groundChecker.position, data.detectionRadius, data.groundMask);
-        
     }
 
+    private void WallDetector()
+    {
+        Vector2 origin = transform.position;
+
+        RaycastHit2D hitRight = Physics2D.Raycast(origin, Vector2.right, data.wallRayLength, data.groundMask);
+        RaycastHit2D hitLeft = Physics2D.Raycast(origin, Vector2.left, data.wallRayLength, data.groundMask);
+
+        Debug.DrawRay(origin, Vector2.right * data.wallRayLength, hitRight ? Color.green : Color.red);
+        Debug.DrawRay(origin, Vector2.left * data.wallRayLength, hitLeft ? Color.green : Color.red);
+
+        if (hitRight) wallSide = 1;
+        else if (hitLeft) wallSide = -1;
+        else wallSide = 0;
+
+        isTouchingWall = wallSide != 0 && !isGround;
+
+        // Coyote time: permite saltar unos ms después de despegarte de la pared
+        if (isTouchingWall)
+            wallCoyoteCounter = data.wallCoyoteTime;
+        else
+            wallCoyoteCounter -= Time.fixedDeltaTime;
+    }
+
+    // ---------------- MOVIMIENTO ----------------
 
     private void CalculateMoveSpeed(Vector2 playerInput)
     {
@@ -64,52 +112,49 @@ public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
         float speedDif = targetSpeed - rb.linearVelocity.x;
         float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? data.acceleration : data.deceleration;
         float movement = speedDif * accelRate;
-        rb.AddForce(movement * Vector2.right.normalized);
+        rb.AddForce(movement * Vector2.right);
     }
 
-    public void OnJump(InputAction.CallbackContext context)
+    private void HandleWallSlide()
     {
-        if (isGround && context.performed)
+        // Solo te deslizas si estás pegado a la pared, cayendo y empujando hacia ella
+        bool pushingTowardsWall = Mathf.Sign(playerMove.x) == wallSide && Mathf.Abs(playerMove.x) > 0.05f;
+        isWallSliding = isTouchingWall && rb.linearVelocity.y < 0 && pushingTowardsWall;
+
+        if (isWallSliding)
         {
-            
-            Jump();
-            return;
-        }
-        if (canWallJump) 
-        {
-            
-            WallJump(GetPlayerDirection().x);
-            Debug.Log($"WallJumping: " + GetPlayerDirection().x + "Isground: " + isGround);
+            float clampedY = Mathf.Max(rb.linearVelocity.y, -data.wallSlideSpeed);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, clampedY);
         }
     }
 
-    private void WallJump(float inputXDir)
+    private void Jump()
     {
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
+        rb.AddForce(Vector2.up * data.jumpForce, ForceMode2D.Impulse);
+    }
+
+    private void WallJump()
+    {
+        // Saltamos en dirección contraria a la pared
+        float jumpDir = -wallSide;
+
+        // Si por coyote time ya no hay pared, usamos la última dirección conocida
+        if (wallSide == 0) jumpDir = isFacingRight ? -1f : 1f;
+
+        wallCoyoteCounter = 0f; // evita doble salto en la misma pared
+
         rb.linearVelocity = Vector2.zero;
-        float jumpDir = Mathf.Sign(inputXDir);
         rb.AddForce(new Vector2(data.wallJumpForce * jumpDir, data.jumpForce), ForceMode2D.Impulse);
+
+        StopAllCoroutines();
+        StartCoroutine(WallJumpRoutine());
     }
 
-    private void Jump() 
+    private IEnumerator WallJumpRoutine()
     {
-        rb.AddForce(Vector2.up.normalized * data.jumpForce, ForceMode2D.Impulse);
+        canMoveOnAir = false;
+        yield return new WaitForSeconds(data.afterWallJumpTime);
+        canMoveOnAir = true;
     }
-
-    void OnCollisionStay2D(Collision2D collision)
-    {
-        canWallJump = !isGround && rb.linearVelocityY < 0 && collision.collider.CompareTag("Ground");
-        //if (!isGround && rb.linearVelocityY < 0 && collision.collider.CompareTag("Ground")) Debug.Log("CanWallJump");
-    }
-
-    public Vector2 GetPlayerDirection()
-    {
-            if (playerMove.x > 0.05f) isFacingRight = true;
-        else if (playerMove.x < -0.05f) isFacingRight = false;
-
-        return isFacingRight ? Vector2.right : Vector2.left;
-    }
-
-
-
-
 }
