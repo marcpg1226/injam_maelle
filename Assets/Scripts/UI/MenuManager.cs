@@ -23,7 +23,7 @@ public class MenuManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         //TransitionManager.Instance.LoadScene(TransitionManager.MAIN_MENU_SCENE);
-        udioManager.Instance.PlayMusic(Game);
+        AudioManager.Instance.PlayMusic(Game);
         SceneManager.LoadScene("Menu");
     }
 
