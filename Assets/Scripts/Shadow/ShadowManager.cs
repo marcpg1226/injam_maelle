@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShadowManager : MonoBehaviour
@@ -6,6 +7,7 @@ public class ShadowManager : MonoBehaviour
     private struct Snapshot
     {
         public Vector2 position;
+        public Vector3 scale;
         public bool flipX;
         public bool isWalking;
         public bool isAereal;
@@ -44,6 +46,7 @@ public class ShadowManager : MonoBehaviour
         buffer.Enqueue(new Snapshot
         {
             position = target.position,
+            scale = target.localScale,
             flipX = targetSprite.flipX,
             isWalking = targetAnimator.GetBool("isWalking"),
             isAereal = targetAnimator.GetBool("isAereal")
@@ -54,6 +57,7 @@ public class ShadowManager : MonoBehaviour
         {
             Snapshot s = buffer.Dequeue();
             rb.MovePosition(s.position);
+            transform.localScale = s.scale;
             sr.flipX = s.flipX;
             animator.SetBool("isWalking", s.isWalking);
             animator.SetBool("isAereal", s.isAereal);
