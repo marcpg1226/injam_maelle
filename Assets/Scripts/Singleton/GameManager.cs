@@ -1,4 +1,4 @@
-using UnityEditor.U2D.Aseprite;
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
