@@ -7,7 +7,7 @@ public class MenuManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         //TransitionManager.Instance.LoadScene(TransitionManager.GAME_SCENE);
-        SceneManager.LoadScene("Level");
+        SceneManager.LoadScene("Level1");
     }
 
     public void RestartScene()
