@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -29,24 +28,15 @@ public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
         inputActions = new InputSystem_Actions();
         inputActions.Player.SetCallbacks(this);
     }
-    private Animator animator;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
     }
 
     private void OnEnable() => inputActions.Player.Enable();
     private void OnDisable() => inputActions.Player.Disable();
 
-    void Update() 
-    {
-        animator.SetBool("isAereal", !isGround);
-
-        if (isGround || rb.linearVelocityY <= 0f)
-            animator.SetBool("isJumping", false);
-
-    }
     void FixedUpdate()
     {
         GroundDetector();
@@ -63,21 +53,8 @@ public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
     {
         playerMove = context.ReadValue<Vector2>();
 
-        if (playerMove.x > 0.05f)
-        {
-            isFacingRight = true;
-            transform.localScale = new Vector2(1, 1);
-        }
-
-
-
-
-        else if (playerMove.x < -0.05f)
-        {
-            isFacingRight = false;
-            transform.localScale = new Vector2(-1, 1);
-        }
-        animator.SetBool("isWalking", Mathf.Abs(playerMove.x) > 0.05f);
+        if (playerMove.x > 0.05f) isFacingRight = true;
+        else if (playerMove.x < -0.05f) isFacingRight = false;
     }
 
     public void OnJump(InputAction.CallbackContext context)
@@ -92,8 +69,6 @@ public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
         {
             WallJump();
         }
-        else
-            animator.SetBool("isAereal", false);
     }
 
     // ---------------- DETECCIÓN ----------------
@@ -152,9 +127,6 @@ public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
     {
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
         rb.AddForce(Vector2.up * data.jumpForce, ForceMode2D.Impulse);
-        animator.SetBool("isJumping", true);
-        animator.SetBool("isAereal", !isGround);
-
     }
 
     private void WallJump()
