@@ -32,6 +32,11 @@ public class GameManager : MonoBehaviour
     public void NextLevel() 
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if (SceneManager.GetActiveScene().name == "FinalScene") 
+        {
+            AudioManager.Instance.StopMusic();
+            AudioManager.Instance.PlayMusic(Finale);
+        }
     }
 
     public void RestartLevel()
