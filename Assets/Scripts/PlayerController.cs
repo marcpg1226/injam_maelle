@@ -25,6 +25,8 @@ public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
     // -- INPUT
     private Vector2 playerMove;
 
+    public AudioClip JumpAudio;
+
     void Awake()
     {
         inputActions = new InputSystem_Actions();
@@ -154,7 +156,7 @@ public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
         rb.AddForce(Vector2.up * data.jumpForce, ForceMode2D.Impulse);
         animator.SetBool("isJumping", true);
-        
+        AudioManager.Instance.PlaySFX(JumpAudio);
     }
 
     private void WallJump()

@@ -3,11 +3,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour
 {
+    
+    public AudioClip Game;
     public void LoadGameScene()
     {
+        AudioManager.Instance.PlayMusic(GameManager.Instance.MainMenu);
         Time.timeScale = 1f;
         //TransitionManager.Instance.LoadScene(TransitionManager.GAME_SCENE);
-        SceneManager.LoadScene("Level");
+        SceneManager.LoadScene("Level1");
     }
 
     public void RestartScene()
@@ -21,6 +24,7 @@ public class MenuManager : MonoBehaviour
         Time.timeScale = 1f;
         //TransitionManager.Instance.LoadScene(TransitionManager.MAIN_MENU_SCENE);
         SceneManager.LoadScene("Menu");
+        AudioManager.Instance.PlayMusic(GameManager.Instance.MainMenu);
     }
 
     public void ExitGame() => Application.Quit();

@@ -20,6 +20,7 @@ public class ShadowManager : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private int delayFrames;
+    public AudioClip DeatchAudio;
 
     void Awake()
     {
@@ -56,7 +57,8 @@ public class ShadowManager : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-           GameManager.Instance.RestartLevel();
+            AudioManager.Instance.PlaySFX(DeatchAudio, 1, true);
+            GameManager.Instance.RestartLevel();
         }
     }
 }
