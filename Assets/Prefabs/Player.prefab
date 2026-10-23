@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 518299717937023698}
   - component: {fileID: 8925809717200249988}
   - component: {fileID: 1961650843023405667}
+  - component: {fileID: 7843904964079489651}
   - component: {fileID: 1559938243757553320}
   m_Layer: 0
   m_Name: Player
@@ -176,6 +177,19 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: 5fc510687d31bd845ab43a3472d29a3a, type: 2}
   groundChecker: {fileID: 3863677152769652572}
   JumpAudio: {fileID: 8300000, guid: 3495ac1cf924deb4da43d4800b5a2b44, type: 3}
+  CanPlay: 1
+--- !u!114 &7843904964079489651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4546717807018957190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50821d97f3fc5b4469746fc7864a28e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerProtection
 --- !u!95 &1559938243757553320
 Animator:
   serializedVersion: 7
