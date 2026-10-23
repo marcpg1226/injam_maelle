@@ -25,6 +25,8 @@ public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
     // -- INPUT
     private Vector2 playerMove;
 
+    public AudioClip JumpAudio;
+
     void Awake()
     {
         inputActions = new InputSystem_Actions();
@@ -41,11 +43,10 @@ public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
     private void OnDisable() => inputActions.Player.Disable();
 
     void Update() 
-
     {
         animator.SetBool("isAereal", !isGround);
 
-        //if (isGround) animator.SetBool("isJumping", false);
+        if (isGround) animator.SetBool("isJumping", false);
 
     }
     void FixedUpdate()
@@ -154,8 +155,8 @@ public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
     {
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
         rb.AddForce(Vector2.up * data.jumpForce, ForceMode2D.Impulse);
-        //animator.SetBool("isJumping", true);
-        
+        animator.SetBool("isJumping", true);
+        AudioManager.Instance.PlaySFX(JumpAudio);
     }
 
     private void WallJump()

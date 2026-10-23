@@ -8,11 +8,13 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public GameObject playerPrefab;
     public GameObject shadowPrefab;
-
+    public AudioClip MainMenu;
+    public AudioClip Finale;
 
 
     private void Awake()
     {
+        
         if (Instance != null)
         {
             Destroy(gameObject);
@@ -20,6 +22,11 @@ public class GameManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+    }
+
+    void Start() 
+    {
+        AudioManager.Instance.PlayMusic(MainMenu);
     }
 
     public void NextLevel() 
