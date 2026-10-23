@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public GameObject playerPrefab;
     public GameObject shadowPrefab;
 
+
+
     private void Awake()
     {
         if (Instance != null)
