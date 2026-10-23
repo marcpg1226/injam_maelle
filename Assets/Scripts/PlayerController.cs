@@ -41,6 +41,7 @@ public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
     private void OnDisable() => inputActions.Player.Disable();
 
     void Update() 
+
     {
         animator.SetBool("isAereal", !isGround);
 

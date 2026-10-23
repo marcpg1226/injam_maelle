@@ -6,6 +6,7 @@ public class ShadowManager : MonoBehaviour
     private struct Snapshot
     {
         public Vector2 position;
+        public Vector3 scale;
         public bool flipX;
     }
 
@@ -20,7 +21,7 @@ public class ShadowManager : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private int delayFrames;
-
+    private Vector2 playerMove;
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();   // Body Type: Kinematic
@@ -39,7 +40,14 @@ public class ShadowManager : MonoBehaviour
         buffer.Enqueue(new Snapshot
         {
             position = target.position,
+<<<<<<< Updated upstream
             flipX = targetSprite.flipX
+=======
+            scale = target.localScale,
+            flipX = targetSprite.flipX,
+            isWalking = targetAnimator.GetBool("isWalking"),
+            isAereal = targetAnimator.GetBool("isAereal")
+>>>>>>> Stashed changes
         });
 
         // 2. Cuando ya hay suficiente retraso acumulado, reproducir
@@ -47,7 +55,14 @@ public class ShadowManager : MonoBehaviour
         {
             Snapshot s = buffer.Dequeue();
             rb.MovePosition(s.position);
+            transform.localScale = s.scale;
             sr.flipX = s.flipX;
+<<<<<<< Updated upstream
+=======
+
+            animator.SetBool("isWalking", s.isWalking);
+            animator.SetBool("isAereal", s.isAereal);
+>>>>>>> Stashed changes
             sr.enabled = true;
         }
     }
