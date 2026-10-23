@@ -2,6 +2,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
 public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
@@ -33,6 +34,7 @@ public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
         inputActions.Player.SetCallbacks(this);
     }
     private Animator animator;
+    public bool CanPlay = true;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -51,6 +53,10 @@ public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
     }
     void FixedUpdate()
     {
+        if (SceneManager.GetActiveScene().name == "FinalScene")
+        {
+            return;
+        }
         GroundDetector();
         WallDetector();
         HandleWallSlide();
