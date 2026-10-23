@@ -7,11 +7,14 @@ public class ShadowManager : MonoBehaviour
     {
         public Vector2 position;
         public bool flipX;
+        public bool isWalking;
+        public bool isAereal;
     }
 
     [Header("Referencias")]
     public Transform target;            // el player
     public SpriteRenderer targetSprite; // sprite del player
+    public Animator targetAnimator;
 
     [Header("Ajustes")]
     [SerializeField] private float delaySeconds = 3f;
@@ -19,12 +22,14 @@ public class ShadowManager : MonoBehaviour
     private readonly Queue<Snapshot> buffer = new Queue<Snapshot>();
     private Rigidbody2D rb;
     private SpriteRenderer sr;
+    private Animator animator;
     private int delayFrames;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();   // Body Type: Kinematic
         sr = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         sr.enabled = false;                 // invisible hasta que empiece a perseguir
     }
 
@@ -39,7 +44,9 @@ public class ShadowManager : MonoBehaviour
         buffer.Enqueue(new Snapshot
         {
             position = target.position,
-            flipX = targetSprite.flipX
+            flipX = targetSprite.flipX,
+            isWalking = targetAnimator.GetBool("isWalking"),
+            isAereal = targetAnimator.GetBool("isAereal")
         });
 
         // 2. Cuando ya hay suficiente retraso acumulado, reproducir
@@ -48,6 +55,8 @@ public class ShadowManager : MonoBehaviour
             Snapshot s = buffer.Dequeue();
             rb.MovePosition(s.position);
             sr.flipX = s.flipX;
+            animator.SetBool("isWalking", s.isWalking);
+            animator.SetBool("isAereal", s.isAereal);
             sr.enabled = true;
         }
     }
