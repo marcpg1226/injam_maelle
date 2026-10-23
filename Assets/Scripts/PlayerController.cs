@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Tilemaps;
 
 public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
 {
@@ -149,4 +150,6 @@ public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
         yield return new WaitForSeconds(data.afterWallJumpTime);
         canMoveOnAir = true;
     }
+
+
 }
