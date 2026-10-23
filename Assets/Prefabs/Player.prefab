@@ -175,6 +175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BasePlayer
   data: {fileID: 11400000, guid: 5fc510687d31bd845ab43a3472d29a3a, type: 2}
   groundChecker: {fileID: 3863677152769652572}
+  JumpAudio: {fileID: 8300000, guid: 3495ac1cf924deb4da43d4800b5a2b44, type: 3}
 --- !u!95 &1559938243757553320
 Animator:
   serializedVersion: 7
