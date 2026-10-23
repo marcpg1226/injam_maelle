@@ -44,8 +44,7 @@ public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
     {
         animator.SetBool("isAereal", !isGround);
 
-        if (isGround || rb.linearVelocityY <= 0f)
-            animator.SetBool("isJumping", false);
+        if (isGround) animator.SetBool("isJumping", false);
 
     }
     void FixedUpdate()
@@ -87,6 +86,7 @@ public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
 
         if (isGround)
         {
+            animator.SetBool("isAereal", false);
             Jump();
         }
         else if (wallCoyoteCounter > 0f)
@@ -94,7 +94,7 @@ public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
             WallJump();
         }
         else
-            animator.SetBool("isAereal", false);
+            animator.SetBool("isAereal", true);
     }
 
     // ---------------- DETECCIÓN ----------------
@@ -154,8 +154,7 @@ public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
         rb.AddForce(Vector2.up * data.jumpForce, ForceMode2D.Impulse);
         animator.SetBool("isJumping", true);
-        animator.SetBool("isAereal", !isGround);
-
+        
     }
 
     private void WallJump()
