@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 2785725761602289551}
   - component: {fileID: 5070283847534203549}
   - component: {fileID: 6625509085566307486}
+  - component: {fileID: -6169434925989368722}
   m_Layer: 0
   m_Name: Shadow
   m_TagString: Player
@@ -205,4 +206,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShadowManager
   target: {fileID: 0}
   targetSprite: {fileID: 0}
-  delaySeconds: 0.75
+  targetAnimator: {fileID: 0}
+  delaySeconds: 1
+--- !u!95 &-6169434925989368722
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4991032408196640811}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a6b89a7957ed17e479f2986d4a554112, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
