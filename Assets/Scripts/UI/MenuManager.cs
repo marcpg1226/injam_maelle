@@ -23,8 +23,8 @@ public class MenuManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         //TransitionManager.Instance.LoadScene(TransitionManager.MAIN_MENU_SCENE);
+        udioManager.Instance.PlayMusic(Game);
         SceneManager.LoadScene("Menu");
-        AudioManager.Instance.PlayMusic(GameManager.Instance.MainMenu);
     }
 
     public void ExitGame() => Application.Quit();
