@@ -14,12 +14,10 @@ public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
     // -- STATE
     public bool isGround { get; private set; }
     private bool isTouchingWall;
-    private int wallSide;               // -1 = pared a la izquierda, 1 = pared a la derecha
+    private int wallSide;  // -1 = pared a la izquierda, 1 = pared a la derecha
     private bool isWallSliding;
     private bool canMoveOnAir = true;
     private bool isFacingRight = true;
-
-    // Coyote time para el walljump (opcional pero muy recomendable)
     private float wallCoyoteCounter;
 
     // -- INPUT
@@ -53,7 +51,6 @@ public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        // Siempre leemos el input; el bloqueo se aplica en FixedUpdate
         playerMove = context.ReadValue<Vector2>();
 
         if (playerMove.x > 0.05f) isFacingRight = true;
@@ -97,7 +94,6 @@ public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
 
         isTouchingWall = wallSide != 0 && !isGround;
 
-        // Coyote time: permite saltar unos ms después de despegarte de la pared
         if (isTouchingWall)
             wallCoyoteCounter = data.wallCoyoteTime;
         else
@@ -117,7 +113,6 @@ public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
 
     private void HandleWallSlide()
     {
-        // Solo te deslizas si estás pegado a la pared, cayendo y empujando hacia ella
         bool pushingTowardsWall = Mathf.Sign(playerMove.x) == wallSide && Mathf.Abs(playerMove.x) > 0.05f;
         isWallSliding = isTouchingWall && rb.linearVelocity.y < 0 && pushingTowardsWall;
 
@@ -136,13 +131,10 @@ public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
 
     private void WallJump()
     {
-        // Saltamos en dirección contraria a la pared
         float jumpDir = -wallSide;
-
-        // Si por coyote time ya no hay pared, usamos la última dirección conocida
         if (wallSide == 0) jumpDir = isFacingRight ? -1f : 1f;
 
-        wallCoyoteCounter = 0f; // evita doble salto en la misma pared
+        wallCoyoteCounter = 0f;
 
         rb.linearVelocity = Vector2.zero;
         rb.AddForce(new Vector2(data.wallJumpForce * jumpDir, data.jumpForce), ForceMode2D.Impulse);
