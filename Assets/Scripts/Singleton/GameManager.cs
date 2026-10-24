@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     private GameObject CanvasBetween;
     [SerializeField] private TMP_Text messageBetween;
     public float timeBetweenScenes = 2f;
+    public bool isTransitioning = false;
     public string[] textBetweenScenes = {"PlaceHolder1", "PlaceHolder2", "PlaceHolder3", "PlaceHolder4"};
 
 
@@ -52,6 +53,7 @@ public class GameManager : MonoBehaviour
     public void InBetweenScenes() 
     {
         Time.timeScale = 0;
+        isTransitioning = true;
         messageBetween.text = textBetweenScenes[SceneManager.GetActiveScene().buildIndex];
         CanvasBetween.SetActive(true);
         StartCoroutine(BetweenScenesRoutine());
@@ -67,5 +69,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(timeBetweenScenes);
         CanvasBetween.SetActive(false);
         Time.timeScale = 1;
+        isTransitioning = false;
     }
 }

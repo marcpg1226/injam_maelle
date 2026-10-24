@@ -158,6 +158,7 @@ public class UIManager : MonoBehaviour
         }
 
         string partName = action.bindings[partIndex].name;   // up, down, left, right
+
         ShowRebindMessage($"Press a key for: {partName.ToUpper()}\n(Esc to cancel)");
 
         rebindingOperationKeyboard = action.PerformInteractiveRebinding(partIndex)
