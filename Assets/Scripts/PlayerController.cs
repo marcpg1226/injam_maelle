@@ -41,15 +41,18 @@ public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
         animator = GetComponent<Animator>();
     }
 
-    private void OnEnable() => inputActions.Player.Enable();
-    private void OnDisable() => inputActions.Player.Disable();
+    private void OnEnable() 
+    {
+        inputActions.Player.Enable();
+    }
+    private void OnDisable() 
+    {
+        inputActions.Player.Disable();
+    }
 
     void Update() 
     {
         animator.SetBool("isAereal", !isGround);
-
-        if (isGround) animator.SetBool("isJumping", false);
-
     }
     void FixedUpdate()
     {
@@ -77,9 +80,6 @@ public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
             transform.localScale = new Vector2(1, 1);
         }
 
-
-
-
         else if (playerMove.x < -0.05f)
         {
             isFacingRight = false;
@@ -103,6 +103,15 @@ public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
         }
         else
             animator.SetBool("isAereal", true);
+    }
+
+    public void OnPause(InputAction.CallbackContext context) 
+    { 
+        if (context.performed)
+        {
+            PauseManager.Instance.TogglePause();
+            Debug.Log("Pause");
+        }
     }
 
     // ---------------- DETECCIÓN ----------------
@@ -161,7 +170,6 @@ public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
     {
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
         rb.AddForce(Vector2.up * data.jumpForce, ForceMode2D.Impulse);
-        animator.SetBool("isJumping", true);
         AudioManager.Instance.PlaySFX(JumpAudio);
     }
 

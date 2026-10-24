@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject shadowPrefab;
     public AudioClip MainMenu;
     public AudioClip Finale;
+    public AudioClip GameMusic;
 
 
     private void Awake()
@@ -26,17 +27,14 @@ public class GameManager : MonoBehaviour
 
     void Start() 
     {
-        AudioManager.Instance.PlayMusic(MainMenu);
+        if (SceneManager.GetActiveScene().name == "Menu") AudioManager.Instance.PlayMusic(MainMenu);
     }
 
     public void NextLevel() 
     {
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        if (SceneManager.GetActiveScene().name == "FinalScene") 
-        {
-            AudioManager.Instance.StopMusic();
-            AudioManager.Instance.PlayMusic(Finale);
-        }
+        
     }
 
     public void RestartLevel()
