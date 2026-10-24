@@ -8,7 +8,6 @@ using UnityEngine.Tilemaps;
 public class BasePlayer : MonoBehaviour
 {
     // -- COMPONENTS
-    //private InputSystem_Actions inputActions;
     private Rigidbody2D rb;
     public PlayerData data;
 
@@ -27,12 +26,6 @@ public class BasePlayer : MonoBehaviour
     private Vector2 playerMove;
 
     public AudioClip JumpAudio;
-
-    void Awake()
-    {
-        //inputActions = new InputSystem_Actions();
-        //inputActions.Player.SetCallbacks(this);
-    }
     private Animator animator;
     public bool CanPlay = true;
     void Start()
@@ -41,22 +34,13 @@ public class BasePlayer : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    /*private void OnEnable() 
-    {
-        inputActions.Player.Enable();
-    }
-    private void OnDisable() 
-    {
-        inputActions.Player.Disable();
-    }*/
-
     void Update() 
     {
         animator.SetBool("isAereal", !isGround);
     }
     void FixedUpdate()
     {
-        if (SceneManager.GetActiveScene().name == "FinalScene")
+        if (SceneManager.GetActiveScene().name == "FinalScene" || !CanPlay)
         {
             return;
         }
@@ -72,6 +56,7 @@ public class BasePlayer : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
+        if (!CanPlay) return;
         playerMove = context.ReadValue<Vector2>();
 
         if (playerMove.x > 0.05f)
@@ -90,7 +75,7 @@ public class BasePlayer : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (!context.performed) return;
+        if (!context.performed && !CanPlay) return;
 
         if (isGround)
         {
@@ -115,6 +100,8 @@ public class BasePlayer : MonoBehaviour
                 return;
             }
             PauseManager.Instance.TogglePause();
+            if (PauseManager.Instance.IsPaused) CanPlay = false;
+            else CanPlay = true;
         }
     }
 

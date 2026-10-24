@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public AudioClip MainMenu;
     public AudioClip Finale;
     public AudioClip GameMusic;
-    private GameObject CanvasBetween;
+    [SerializeField] private GameObject CanvasBetween;
     [SerializeField] private TMP_Text messageBetween;
     public float timeBetweenScenes = 2f;
     public bool isTransitioning = false;
@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
         if (Instance != null)
         {
             Destroy(gameObject);
+            return;
             
         }
         Instance = this;
@@ -35,7 +36,6 @@ public class GameManager : MonoBehaviour
     void Start() 
     {
         if (SceneManager.GetActiveScene().name == "Menu") AudioManager.Instance.PlayMusic(MainMenu);
-        CanvasBetween = transform.GetChild(0).gameObject;
     }
 
     public void NextLevel() 

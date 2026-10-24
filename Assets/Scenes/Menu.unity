@@ -192,11 +192,11 @@ Transform:
   m_GameObject: {fileID: 14036493}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.19376, y: -9.80412, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 139516235}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &29053742
 GameObject:
@@ -248,8 +248,10 @@ MonoBehaviour:
   MainMenu: {fileID: 8300000, guid: a454745f363ba004685558c2b2b840d2, type: 3}
   Finale: {fileID: 8300000, guid: 804dae8762914214584b21263a36ffb0, type: 3}
   GameMusic: {fileID: 8300000, guid: 86b35c2b6ca0e864b982b3201dfd4fe4, type: 3}
+  CanvasBetween: {fileID: 1947508055}
   messageBetween: {fileID: 166246142}
   timeBetweenScenes: 1.9
+  isTransitioning: 0
   textBetweenScenes:
   - PlaceHolder1
   - PlaceHolder2
@@ -286,7 +288,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1951980121}
-  - {fileID: 14036496}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &139516236
@@ -3431,3 +3432,4 @@ SceneRoots:
   - {fileID: 7171032952799976027}
   - {fileID: 1948954276}
   - {fileID: 139516235}
+  - {fileID: 14036496}
