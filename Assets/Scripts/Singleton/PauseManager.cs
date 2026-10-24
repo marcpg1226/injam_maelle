@@ -27,7 +27,7 @@ public class PauseManager : MonoBehaviour
 
     public void KeyBind() 
     { 
-        
+        UIManager.Instance.OnMenuButton();
     }
 
     public void Pause() 

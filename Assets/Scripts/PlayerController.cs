@@ -5,10 +5,10 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
-public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
+public class BasePlayer : MonoBehaviour
 {
     // -- COMPONENTS
-    private InputSystem_Actions inputActions;
+    //private InputSystem_Actions inputActions;
     private Rigidbody2D rb;
     public PlayerData data;
 
@@ -30,8 +30,8 @@ public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
 
     void Awake()
     {
-        inputActions = new InputSystem_Actions();
-        inputActions.Player.SetCallbacks(this);
+        //inputActions = new InputSystem_Actions();
+        //inputActions.Player.SetCallbacks(this);
     }
     private Animator animator;
     public bool CanPlay = true;
@@ -41,14 +41,14 @@ public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
         animator = GetComponent<Animator>();
     }
 
-    private void OnEnable() 
+    /*private void OnEnable() 
     {
         inputActions.Player.Enable();
     }
     private void OnDisable() 
     {
         inputActions.Player.Disable();
-    }
+    }*/
 
     void Update() 
     {
@@ -107,10 +107,14 @@ public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
 
     public void OnPause(InputAction.CallbackContext context) 
     { 
-        if (context.performed)
+        if (context.started || !UIManager.Instance.isRebinding)
         {
+            if (UIManager.Instance.m_isOpen)
+            {
+                UIManager.Instance.OnMenuButton();
+                return;
+            }
             PauseManager.Instance.TogglePause();
-            Debug.Log("Pause");
         }
     }
 

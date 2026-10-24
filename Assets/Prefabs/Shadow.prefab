@@ -118,7 +118,7 @@ SpriteRenderer:
   m_SortingOrder: 10
   m_MaskInteraction: 0
   m_Sprite: {fileID: 8880989440007667445, guid: de63591d188b4884aa97cc19fda2d61c, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -206,8 +206,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShadowManager
   target: {fileID: 0}
   targetSprite: {fileID: 0}
-  targetAnimator: {fileID: 0}
   delaySeconds: 1
+  DeatchAudio: {fileID: 8300000, guid: 438d5b59906dfbe47ba498ca02b2a494, type: 3}
 --- !u!95 &-6169434925989368722
 Animator:
   serializedVersion: 7

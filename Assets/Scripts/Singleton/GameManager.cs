@@ -1,4 +1,6 @@
 
+using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -11,6 +13,10 @@ public class GameManager : MonoBehaviour
     public AudioClip MainMenu;
     public AudioClip Finale;
     public AudioClip GameMusic;
+    private GameObject CanvasBetween;
+    [SerializeField] private TMP_Text messageBetween;
+    public float timeBetweenScenes = 2f;
+    public string[] textBetweenScenes = {"PlaceHolder1", "PlaceHolder2", "PlaceHolder3", "PlaceHolder4"};
 
 
     private void Awake()
@@ -28,17 +34,38 @@ public class GameManager : MonoBehaviour
     void Start() 
     {
         if (SceneManager.GetActiveScene().name == "Menu") AudioManager.Instance.PlayMusic(MainMenu);
+        CanvasBetween = transform.GetChild(0).gameObject;
     }
 
     public void NextLevel() 
     {
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        
+        if (SceneManager.GetActiveScene().buildIndex + 1 == SceneManager.sceneCountInBuildSettings - 1)
+        {
+            AudioManager.Instance.PlayMusic(Finale, true, 0.5f);
+            return;
+        }
+        InBetweenScenes();
+    }
+
+    public void InBetweenScenes() 
+    {
+        Time.timeScale = 0;
+        messageBetween.text = textBetweenScenes[SceneManager.GetActiveScene().buildIndex];
+        CanvasBetween.SetActive(true);
+        StartCoroutine(BetweenScenesRoutine());
     }
 
     public void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    private IEnumerator BetweenScenesRoutine() 
+    {
+        yield return new WaitForSecondsRealtime(timeBetweenScenes);
+        CanvasBetween.SetActive(false);
+        Time.timeScale = 1;
     }
 }

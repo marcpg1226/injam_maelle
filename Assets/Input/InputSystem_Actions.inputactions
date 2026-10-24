@@ -39,7 +39,7 @@
             ],
             "bindings": [
                 {
-                    "name": "2D Vector",
+                    "name": "WASD",
                     "id": "21f31e00-7819-4a21-a677-19139e977a7a",
                     "path": "2DVector",
                     "interactions": "",
@@ -95,8 +95,30 @@
                 },
                 {
                     "name": "",
+                    "id": "f24bd56b-3e38-47fd-9519-645c0b5bb476",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "069d3f21-20c0-4cb1-bdbe-1833928bf6e3",
                     "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f23e147e-95ff-4554-9233-a59313d36e20",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -117,8 +139,8 @@
                 },
                 {
                     "name": "",
-                    "id": "eb222443-d602-4271-a06b-964942655403",
-                    "path": "<Keyboard>/p",
+                    "id": "febc5dc8-b506-446a-aaf1-890f2f7cda19",
+                    "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

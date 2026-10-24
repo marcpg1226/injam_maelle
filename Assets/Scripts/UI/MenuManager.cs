@@ -12,6 +12,7 @@ public class MenuManager : MonoBehaviour
         //TransitionManager.Instance.LoadScene(TransitionManager.GAME_SCENE);
         AudioManager.Instance.PlayMusic(GameManager.Instance.GameMusic);
         SceneManager.LoadScene("Level1");
+        GameManager.Instance.InBetweenScenes();
     }
 
     public void RestartScene()
