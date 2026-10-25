@@ -75,6 +75,11 @@ public class BasePlayer : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
+        if (context.started && GameManager.Instance.isTransitioning) 
+        {
+            GameManager.Instance.SkipBetweenScenes();
+            return;
+        } 
         if (!context.performed && !CanPlay) return;
 
         if (isGround)
