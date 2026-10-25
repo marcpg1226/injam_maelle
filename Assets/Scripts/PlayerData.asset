@@ -21,7 +21,7 @@ MonoBehaviour:
     m_Bits: 64
   jumpForce: 15
   wallJumpForce: 10
-  wallRayLength: 0.75
+  wallRayLength: 0.6
   afterWallJumpTime: 0.4
   wallSlideSpeed: 2
-  wallCoyoteTime: 0.2
+  wallCoyoteTime: 0.01
