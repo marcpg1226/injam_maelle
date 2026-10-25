@@ -59,6 +59,14 @@ public class GameManager : MonoBehaviour
         StartCoroutine(BetweenScenesRoutine());
     }
 
+    public void SkipBetweenScenes()
+    { 
+        StopCoroutine(BetweenScenesRoutine());
+        CanvasBetween.SetActive(false);
+        Time.timeScale = 1;
+        isTransitioning = false;
+    }
+
     public void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
