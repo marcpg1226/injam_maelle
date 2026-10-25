@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream:Assets/Animations/RandomGirl/RandomGirl.controller.meta
 guid: 27973a2976b94fe4288a2b81830ab33f
 NativeFormatImporter:
+=======
+guid: 7443ad2237008cc419c5149bd3b000fa
+DefaultImporter:
+>>>>>>> Stashed changes:Assets/Scenes/Level4.unity.meta
   externalObjects: {}
   mainObjectFileID: 9100000
   userData: 
