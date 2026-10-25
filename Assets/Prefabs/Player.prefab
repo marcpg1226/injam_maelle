@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6258365398790278898}
+  - component: {fileID: 7679943359474404421}
   - component: {fileID: 8353278711429970857}
   - component: {fileID: 518299717937023698}
   - component: {fileID: 8925809717200249988}
@@ -38,6 +39,18 @@ Transform:
   - {fileID: 3863677152769652572}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7679943359474404421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4546717807018957190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1bb2206e1a7d894ea759414e4f7e96b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CheckpointRespawn
 --- !u!212 &8353278711429970857
 SpriteRenderer:
   serializedVersion: 3
@@ -85,7 +98,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 11
   m_MaskInteraction: 0
   m_Sprite: {fileID: 8793639957104055765, guid: 877a7b8e5eb42ba4f8544777b32d89b5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

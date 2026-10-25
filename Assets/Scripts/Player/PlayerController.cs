@@ -48,7 +48,7 @@ public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
     {
         animator.SetBool("isAereal", !isGround);
 
-        if (isGround) animator.SetBool("isJumping", false);
+        //if (isGround) animator.SetBool("isJumping", false);
 
     }
     void FixedUpdate()
@@ -161,7 +161,7 @@ public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
     {
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
         rb.AddForce(Vector2.up * data.jumpForce, ForceMode2D.Impulse);
-        animator.SetBool("isJumping", true);
+        //animator.SetBool("isJumping", true);
         AudioManager.Instance.PlaySFX(JumpAudio);
     }
 

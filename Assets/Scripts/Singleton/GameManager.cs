@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
 
     public void RestartLevel()
     {
+        Debug.Log("RestartLevel called by:\n" + System.Environment.StackTrace);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
