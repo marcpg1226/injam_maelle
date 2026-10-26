@@ -3010,6 +3010,74 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 2444928889847223663, guid: 1b5b90864a0d7fa4ba0b5b08f8ad77de, type: 3}
+      propertyPath: m_fontSize
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2444928889847223663, guid: 1b5b90864a0d7fa4ba0b5b08f8ad77de, type: 3}
+      propertyPath: m_fontSizeMax
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 2444928889847223663, guid: 1b5b90864a0d7fa4ba0b5b08f8ad77de, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2444928889847223663, guid: 1b5b90864a0d7fa4ba0b5b08f8ad77de, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2444928889847223663, guid: 1b5b90864a0d7fa4ba0b5b08f8ad77de, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 4196309533037656703, guid: 1b5b90864a0d7fa4ba0b5b08f8ad77de, type: 3}
+      propertyPath: textBetweenScenes.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4196309533037656703, guid: 1b5b90864a0d7fa4ba0b5b08f8ad77de, type: 3}
+      propertyPath: 'textBetweenScenes.Array.data[0]'
+      value: "\u201CUnwanted loneliness has spread through our society like wildfire in recent years, especially among young people.\u201D \\n\\n \u201CNow you will live a story of loneliness. A story of escapism, of social misunderstanding, of constant suffering, of a heavy burden, of a distorted mind...\u201D \\n\\n \u201CAnd what better time than Halloween season for your personal demons to come to life.\u201D \\n\\n Oct 27, 202X \u2013 New message from (?): \\n\\n \u201COn Halloween night they say pumpkins scare away evil spirits, so they\u2019ll guide you on your way, step by step. And remember, don\u2019t stop running (WASD) until you reach a safe place. Climb up the walls if you have to (jump with Tab against a wall). You\u2019ve got this, I believe in you (smiley emoji)\u201D \\n\\n #%\xBF?! \\n\\n \u201CI bet you can\u2019t even follow instructions this simple. You won\u2019t even be able to take one step before your mind freezes you in place.\u201D  "
+      objectReference: {fileID: 0}
+    - target: {fileID: 4196309533037656703, guid: 1b5b90864a0d7fa4ba0b5b08f8ad77de, type: 3}
+      propertyPath: 'textBetweenScenes.Array.data[1]'
+      value: "\u201CThe worst part is that it doesn\u2019t only happen when you\u2019re alone, it\u2019s also there when you\u2019re surrounded by people.\u201D \\n\\n \u201CIronic, isn\u2019t it? Feeling lonely in a crowd. Feeling like the black sheep of a huge flock.\u201D \\n\\n \u201CTo think that nobody around you would think it worth wasting a single breath on getting to know a being who can\u2019t even interact with the world around it.\u201D \\n\\n \u201CThinking \u2018I bet they hate me,\u2019 thinking that whoever is looking at you is already judging you. Without you even knowing it.\u201D \\n\\n Oct 28, 202X \u2013 New message from (someone who surely judges me like everyone else?): \\n \u201CNobody judges and hates another person for no reason. You\u2019re no exception. In fact, there are people who love you, who will always be by your side. Like me.\u201D \\n\\n #%\xBF?! \\n \u201CThey don\u2019t hate you?! All it takes is one look at that disgusted face you wear to make someone\u2019s skin crawl. And what nonsense is that about someone loving you? Oh, please\u2026 I bet they only say that so the wound cuts even deeper later on.\u201D "
+      objectReference: {fileID: 0}
+    - target: {fileID: 4196309533037656703, guid: 1b5b90864a0d7fa4ba0b5b08f8ad77de, type: 3}
+      propertyPath: 'textBetweenScenes.Array.data[2]'
+      value: "\u201CAll it takes is one place where you\u2019re truly not accepted. Where the people around you actively make sure you never want to interact with anyone.\u201D \\n\\n \u201CA place where you feel socially incompetent, one that hurts your mind. A place that makes you believe the outside world is just like that.\u201D \\n\\n \u201CSchool, for example, is a good illustration. What better place to feel isolated, when you can be the target of kids with nothing better to do than shut you out socially over anything at all.\u201D \\n\\n Oct 29, 202X \u2013 New message from (another one trying to trick me?): \\n \u201CIf only school weren\u2019t hell for you. If only your classmates didn\u2019t treat you like a punching bag. If only you didn\u2019t grow up with that hell following you everywhere.\u201D \\n\\n #%\xBF?! \\n \u201COf course that hell is your whole reality. It\u2019s just that the dump you call school is the only place where people do you the favor of showing you the scum you are to humanity.\u201D "
+      objectReference: {fileID: 0}
+    - target: {fileID: 4196309533037656703, guid: 1b5b90864a0d7fa4ba0b5b08f8ad77de, type: 3}
+      propertyPath: 'textBetweenScenes.Array.data[3]'
+      value: "\u201CWe spend our whole lives running from this thought. Running from every social interaction. Running from our surroundings.\u201D \\n\\n \u201CRunning to our comfort zone. Our sanctuary. With no one around you. With no one to prejudge you...\u201D \\n\\n \u201CReaching your sanctuary feels like an obstacle course run against the clock. All while you fight with your own mind and its tricks.\u201D \\n\\n Oct 30, 202X \u2013 New message from (someone who understands me?): \\n \u201CWhenever you leave that hell, you run. You run without looking back. You escape from the world. Until you get home. Your sanctuary, free from stares, from thoughts, from that voice, that shadow\u2026 The place that looks like a prison to everyone else.\u201D \\n\\n #%\xBF?! \\n \u201CRun away. Run away all you want. Take refuge in your sanctuary, which is as much your prison as it is mine. But you\u2019ll never change your reality, because you\u2019re a damn cow-...\u201D \\n\\n You:  \\n \u201C(What\u2019s happening? My mind feels a little calmer, even if only slightly\u2026)\u201D "
+      objectReference: {fileID: 0}
+    - target: {fileID: 4196309533037656703, guid: 1b5b90864a0d7fa4ba0b5b08f8ad77de, type: 3}
+      propertyPath: 'textBetweenScenes.Array.data[4]'
+      value: "\u201CThat thought is like a shadow, a thought that follows you wherever you go and chokes you in front of anyone.\u201D \\n\\n \u201CA thought that makes you think the worst of yourself, that distorts your perception of every social interaction.\u201D \\n\\n \u201CThat turns the people around you into judging demons. That punish you just by being there. That make you live in a hell of your own mind\u2019s making.\u201D \\n\\n Oct 31, 202X \u2013 New message from (someone who cares about me?): \\n \u201CI can\u2019t even imagine the burden you carry day after day. It must feel like a ghost haunting you wherever you go. If only I could lighten it a little.\u201D \\n\\n #%\xBF?! \\n \u201CA heavy burden, she says. Your burden doesn\u2019t even compare to the one carried by the people who share the same air with-...\u201D \\n\\n You: "
+      objectReference: {fileID: 0}
+    - target: {fileID: 4196309533037656703, guid: 1b5b90864a0d7fa4ba0b5b08f8ad77de, type: 3}
+      propertyPath: 'textBetweenScenes.Array.data[5]'
+      value: "\u201CBut what if... what if there was just one person who genuinely made you feel understood?\u201D \\n\\n \u201CA person whose company felt like a good experience and not a judgment.\u201D \\n\\n \u201CWhat if... one person could make that shadow chasing you disappear...\u201D \\n\\n \u201CA person who cleared your mind, who gave you back a normal view of the world. Who brought the color back to your life.\u201D \\n\\n Nov 1, 202X \u2013 New message from (a person I love): \\n \u201CYou\u2019ve always mattered to me. I\u2019ve always tried to care about you. I\u2019ve always tried to understand you. You\u2019ve always meant the world to me. I\u2019ve always loved you. But what about you? Have I been there enough in your life?\u201D \\n\\n #%\xBF?! \u2026 \\n\\n You:  \\n \u201C(Now I remember. I remember that I always had someone who cared about me, who understood me. But my demons had made me forget.)\u201D "
+      objectReference: {fileID: 0}
+    - target: {fileID: 4196309533037656703, guid: 1b5b90864a0d7fa4ba0b5b08f8ad77de, type: 3}
+      propertyPath: 'textBetweenScenes.Array.data[6]'
+      value: "\u201CBut what if... what if there was just one person who genuinely made you feel understood?\u201D \\n\\n \u201CA person whose company felt like a good experience and not a judgment.\u201D \\n\\n \u201CWhat if... one person could make that shadow chasing you disappear...\u201D \\n\\n \u201CA person who cleared your mind, who gave you back a normal view of the world. Who brought the color back to your life.\u201D \\n\\n Nov 1, 202X \u2013 New message from (a person I love): \\n \u201CYou\u2019ve always mattered to me. I\u2019ve always tried to care about you. I\u2019ve always tried to understand you. You\u2019ve always meant the world to me. I\u2019ve always loved you. But what about you? Have I been there enough in your life?\u201D \\n\\n #%\xBF?! \u2026 \\n\\n You:  \\n \u201C(Now I remember. I remember that I always had someone who cared about me, who understood me. But my demons had made me forget.)\u201D "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7323361740926518273, guid: 1b5b90864a0d7fa4ba0b5b08f8ad77de, type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7323361740926518273, guid: 1b5b90864a0d7fa4ba0b5b08f8ad77de, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7323361740926518273, guid: 1b5b90864a0d7fa4ba0b5b08f8ad77de, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7323361740926518273, guid: 1b5b90864a0d7fa4ba0b5b08f8ad77de, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9114696754249756612, guid: 1b5b90864a0d7fa4ba0b5b08f8ad77de, type: 3}
       propertyPath: m_LocalPosition.x
       value: 31.53805
