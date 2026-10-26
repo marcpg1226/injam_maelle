@@ -7,39 +7,43 @@ public class ShadowManager : MonoBehaviour
     {
         public Vector2 position;
         public bool flipX;
-        public Sprite sprite;
         public float time;
     }
 
+    private static readonly int SpeedHash = Animator.StringToHash("Speed");
+    private static readonly int VerticalSpeedHash = Animator.StringToHash("VerticalSpeed");
+    private static readonly int SpawnHash = Animator.StringToHash("Spawn");
+
     [Header("Referencias")]
     public Transform target;
-    public SpriteRenderer targetSprite;
+    public SpriteRenderer targetSprite;   // only used to copy which way the player faces
     [SerializeField] private ShadowBubble bubble;
 
     [Header("Ajustes")]
     [SerializeField] private float delaySeconds = 3f;
     [SerializeField] private float catchUpMargin = 5;
 
+    [Header("Spawn")]
+    [SerializeField] private float spawnDuration = 1f;   // set to the length of your Spawn clip
+
     [Header("Chase")]
     [SerializeField] private float chaseMultiplier = 1.5f;
-    [SerializeField] private float chaseGapSeconds = 1f;   // never closer than this (in time) behind the player
+    [SerializeField] private float chaseGapSeconds = 1f;
 
     private readonly Queue<Snapshot> buffer = new Queue<Snapshot>();
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private Animator anim;
     private Collider2D[] cols;
-
-    private void SetCollidersEnabled(bool on)
-    {
-        foreach (Collider2D c in cols)
-            if (c != null) c.enabled = on;
-    }
-
     private int delayFrames;
     private bool chasing;
     private bool waitingAtSafeZone;
+    private bool appeared;
+    private bool spawning;
+    private bool facingFlipX;
+    private float spawnEndTime;
     private float stepAccumulator;
+    private Vector2 shownPos;
     public AudioClip DeatchAudio;
 
     void Awake()
@@ -50,8 +54,6 @@ public class ShadowManager : MonoBehaviour
 
         rb.bodyType = RigidbodyType2D.Kinematic;
         rb.gravityScale = 0f;
-
-        if (anim != null) anim.enabled = false;
 
         cols = GetComponentsInChildren<Collider2D>(true);
         SetCollidersEnabled(false);   // no killing while invisible
@@ -69,6 +71,24 @@ public class ShadowManager : MonoBehaviour
 
         if (target == null || targetSprite == null)
             Debug.LogError("ShadowManager: Target or Target Sprite is not assigned.", this);
+
+        if (anim == null)
+            Debug.LogError("ShadowManager: the shadow has no Animator.", this);
+        else if (!HasParam("Speed") || !HasParam("VerticalSpeed") || !HasParam("Spawn"))
+            Debug.LogError("ShadowManager: the Animator needs the parameters Speed (float), VerticalSpeed (float) and Spawn (trigger).", this);
+    }
+
+    private bool HasParam(string paramName)
+    {
+        foreach (AnimatorControllerParameter p in anim.parameters)
+            if (p.name == paramName) return true;
+        return false;
+    }
+
+    private void SetCollidersEnabled(bool on)
+    {
+        foreach (Collider2D c in cols)
+            if (c != null) c.enabled = on;
     }
 
     private void OnZoneBroke(FakeSafeZone zone)
@@ -82,8 +102,9 @@ public class ShadowManager : MonoBehaviour
         waitingAtSafeZone = false;
         stepAccumulator = 0f;
         CompressStandstill();
+        appeared = true;
         sr.enabled = true;
-        SetCollidersEnabled(true);
+        if (!spawning) SetCollidersEnabled(true);
         if (bubble != null) bubble.Say("Found you!", 2f);
     }
 
@@ -105,16 +126,53 @@ public class ShadowManager : MonoBehaviour
         }
     }
 
+    private void BeginSpawn()
+    {
+        spawning = true;
+        spawnEndTime = Time.time + spawnDuration;
+        if (bubble != null) bubble.Hide();
+        if (anim != null) anim.SetTrigger(SpawnHash);
+    }
+
     void FixedUpdate()
     {
+        bool playerFlipped = targetSprite.flipX ^ (targetSprite.transform.lossyScale.x < 0f);
+
         buffer.Enqueue(new Snapshot
         {
             position = target.position,
-            flipX = targetSprite.flipX,
-            sprite = targetSprite.sprite,
+            flipX = target.lossyScale.x < 0f,
             time = Time.fixedTime
         });
 
+        // While the spawn animation plays, the shadow stays put and harmless
+        if (spawning)
+        {
+            if (Time.time < spawnEndTime) return;
+            spawning = false;
+            SetCollidersEnabled(true);
+        }
+
+        Vector2 startPos = shownPos;
+        Replay();
+        UpdateAnimator((shownPos - startPos) / Time.fixedDeltaTime);
+    }
+
+    // Runs after the Animator, so a Flip X curve in a clip can't overwrite the direction
+    void LateUpdate()
+    {
+        if (sr.enabled) sr.flipX = facingFlipX;
+    }
+
+    private void UpdateAnimator(Vector2 velocity)
+    {
+        if (anim == null) return;
+        anim.SetFloat(SpeedHash, Mathf.Abs(velocity.x));
+        anim.SetFloat(VerticalSpeedHash, velocity.y);
+    }
+
+    private void Replay()
+    {
         if (chasing)
             stepAccumulator += chaseMultiplier;
         else
@@ -144,7 +202,7 @@ public class ShadowManager : MonoBehaviour
                 {
                     if (bubble != null)
                     {
-                        if (fakeBlocked && sr.enabled) bubble.SetProgress(progress);
+                        if (fakeBlocked && appeared) bubble.SetProgress(progress);
                         else bubble.Hide();   // real zones show no text
                     }
                     return;   // frozen outside the barrier
@@ -172,14 +230,22 @@ public class ShadowManager : MonoBehaviour
             }
 
             buffer.Dequeue();
-            if (!sr.enabled)   // first appearance: teleport, don't glide
+            Debug.Log("facing flip: " + s.flipX);
+            facingFlipX = s.flipX;
+            shownPos = s.position;
+
+            if (!appeared)
             {
+                // First appearance: teleport there, play the spawn animation
+                appeared = true;
                 rb.position = s.position;
                 transform.position = s.position;
+                sr.enabled = true;
+                BeginSpawn();
+                return;
             }
+
             rb.MovePosition(s.position);
-            sr.flipX = s.flipX;
-            sr.sprite = s.sprite;
             sr.enabled = true;
             SetCollidersEnabled(true);
 
@@ -226,9 +292,13 @@ public class ShadowManager : MonoBehaviour
 
     private void TryKill(Collider2D other)
     {
-        if (Time.timeSinceLevelLoad < 1f) return;
         if (!other.CompareTag("Player")) return;
+        if (!sr.enabled || spawning) return;
         if (PlayerProtection.Instance != null && PlayerProtection.Instance.IsProtected) return;
+
+        Debug.Log("Shadow kill! shadow pos " + transform.position +
+                  ", visible: " + sr.enabled +
+                  ", time since load: " + Time.timeSinceLevelLoad);
 
         AudioManager.Instance.PlaySFX(DeatchAudio, 1, true);
         GameManager.Instance.RestartLevel();
