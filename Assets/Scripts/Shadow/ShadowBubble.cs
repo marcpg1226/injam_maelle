@@ -7,10 +7,10 @@ public class ShadowBubble : MonoBehaviour
     [SerializeField]
     private string[] lines =
     {
-        "I can wait.",
-        "Hear that?",
-        "Cracking...",
-        "Almost..."
+        "You don't matter to them",
+        "They don't care about you",
+        "You're his second dish",
+        "Never the first"
     };
 
     private int currentLine = -1;

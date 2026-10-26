@@ -444,7 +444,7 @@ SpriteRenderer:
   m_SortingOrder: 10
   m_MaskInteraction: 0
   m_Sprite: {fileID: 8880989440007667445, guid: de63591d188b4884aa97cc19fda2d61c, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -535,6 +535,7 @@ MonoBehaviour:
   bubble: {fileID: 2040640452762776609}
   delaySeconds: 1
   catchUpMargin: 5
+  spawnDuration: 1
   chaseMultiplier: 1.5
   chaseGapSeconds: 1
   DeatchAudio: {fileID: 8300000, guid: 438d5b59906dfbe47ba498ca02b2a494, type: 3}

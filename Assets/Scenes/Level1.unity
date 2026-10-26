@@ -8858,6 +8858,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shadow
       objectReference: {fileID: 0}
+    - target: {fileID: 5070283847534203549, guid: c5b4a9b28933fc44596c584385f9df85, type: 3}
+      propertyPath: m_LayerOverridePriority
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6625509085566307486, guid: c5b4a9b28933fc44596c584385f9df85, type: 3}
       propertyPath: target
       value: 
@@ -8921,6 +8925,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4991032408196640811, guid: c5b4a9b28933fc44596c584385f9df85, type: 3}
       insertIndex: -1
       addedObject: {fileID: 444382637}
+    - targetCorrespondingSourceObject: {fileID: 2303826548773810024, guid: c5b4a9b28933fc44596c584385f9df85, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: c5b4a9b28933fc44596c584385f9df85, type: 3}
 --- !u!1001 &7063394791903631051
 PrefabInstance:
