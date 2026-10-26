@@ -5,10 +5,9 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
-public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
+public class BasePlayer : MonoBehaviour
 {
     // -- COMPONENTS
-    private InputSystem_Actions inputActions;
     private Rigidbody2D rb;
     public PlayerData data;
 
@@ -28,11 +27,7 @@ public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
 
     public AudioClip JumpAudio;
 
-    void Awake()
-    {
-        inputActions = new InputSystem_Actions();
-        inputActions.Player.SetCallbacks(this);
-    }
+    
     private Animator animator;
     public bool CanPlay = true;
     void Start()
@@ -41,8 +36,7 @@ public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
         animator = GetComponent<Animator>();
     }
 
-    private void OnEnable() => inputActions.Player.Enable();
-    private void OnDisable() => inputActions.Player.Disable();
+
 
     void Update() 
     {
@@ -77,9 +71,6 @@ public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
             transform.localScale = new Vector2(1, 1);
         }
 
-
-
-
         else if (playerMove.x < -0.05f)
         {
             isFacingRight = false;
@@ -90,7 +81,12 @@ public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (!context.performed) return;
+        if (context.started && GameManager.Instance.isTransitioning)
+        {
+            GameManager.Instance.SkipBetweenScenes();
+            return;
+        }
+        if (!context.performed && !CanPlay) return;
 
         if (isGround)
         {
@@ -103,6 +99,21 @@ public class BasePlayer : MonoBehaviour, InputSystem_Actions.IPlayerActions
         }
         else
             animator.SetBool("isAereal", true);
+    }
+
+    public void OnPause(InputAction.CallbackContext context)
+    {
+        if ((context.started || !UIManager.Instance.isRebinding) && !GameManager.Instance.isTransitioning)
+        {
+            if (UIManager.Instance.m_isOpen)
+            {
+                UIManager.Instance.OnMenuButton();
+                return;
+            }
+            PauseManager.Instance.TogglePause();
+            if (PauseManager.Instance.IsPaused) CanPlay = false;
+            else CanPlay = true;
+        }
     }
 
     // ---------------- DETECCIÓN ----------------

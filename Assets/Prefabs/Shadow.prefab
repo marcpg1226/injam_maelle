@@ -114,7 +114,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  - {fileID: 7092470614094210066, guid: 5564888884181b5488c167f6139427a7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -160,8 +160,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: akkanbe
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5564888884181b5488c167f6139427a7, type: 2}
+  m_sharedMaterial: {fileID: 7092470614094210066, guid: 5564888884181b5488c167f6139427a7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -185,8 +185,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10
-  m_fontSizeBase: 10
+  m_fontSize: 5
+  m_fontSizeBase: 5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -537,7 +537,7 @@ MonoBehaviour:
   catchUpMargin: 5
   chaseMultiplier: 1.5
   chaseGapSeconds: 1
-  DeatchAudio: {fileID: 0}
+  DeatchAudio: {fileID: 8300000, guid: 438d5b59906dfbe47ba498ca02b2a494, type: 3}
 --- !u!95 &7830866203424799611
 Animator:
   serializedVersion: 7
