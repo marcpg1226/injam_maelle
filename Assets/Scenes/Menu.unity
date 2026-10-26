@@ -3011,6 +3011,7 @@ PrefabInstance:
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 4196309533037656703, guid: 1b5b90864a0d7fa4ba0b5b08f8ad77de, type: 3}
+<<<<<<< Updated upstream
       propertyPath: timeBetweenScenes
       value: 20
       objectReference: {fileID: 0}
@@ -3033,6 +3034,14 @@ PrefabInstance:
     - target: {fileID: 8816232258036611990, guid: 1b5b90864a0d7fa4ba0b5b08f8ad77de, type: 3}
       propertyPath: m_IsActive
       value: 1
+=======
+      propertyPath: textBetweenScenes.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4196309533037656703, guid: 1b5b90864a0d7fa4ba0b5b08f8ad77de, type: 3}
+      propertyPath: 'textBetweenScenes.Array.data[6]'
+      value: But what would happen if... there were a person who, when keeping you company, made you feel like it was a good experience and not a judgment? What would happen if a person could make that shadow that follows you disappear? A person who cleared your mind, who restored your perception of the world to normal, who gave the color back to your life.
+>>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: 9114696754249756612, guid: 1b5b90864a0d7fa4ba0b5b08f8ad77de, type: 3}
       propertyPath: m_LocalPosition.x
