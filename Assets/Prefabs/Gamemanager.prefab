@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9114696754249756612}
   - component: {fileID: 4196309533037656703}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: Gamemanager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,13 +52,15 @@ MonoBehaviour:
   GameMusic: {fileID: 8300000, guid: 86b35c2b6ca0e864b982b3201dfd4fe4, type: 3}
   CanvasBetween: {fileID: 2118096133927446801}
   messageBetween: {fileID: 2444928889847223663}
-  timeBetweenScenes: 1.9
+  timeBetweenScenes: 20
   isTransitioning: 0
   textBetweenScenes:
-  - PlaceHolder1
-  - PlaceHolder2
-  - PlaceHolder3
-  - PlaceHolder4
+  - 'Loneliness is unwanted, yet it has spread through our society in recent years, especially among young people. Now you will live a story of loneliness: a story of escapism, social incomprehension, constant suffering, a heavy burden, a distorted mind... The worst part is not being alone when you are alone, but also being alone when you are surrounded by people.'
+  - "Ironic, isn\u2019t it? Feeling alone while surrounded by people. Feeling like the black sheep of an enormous flock. You simply lack a place where you are truly accepted, where the people around you actively try to keep you from wanting to interact with them. A place where you feel socially incompetent, that hurts your mind [], that makes you believe the outside world is like hell []. School is a good example: what better place to feel isolated, if your goal is for nobody to see you as better than them or to marginalize you socially for any reason?"
+  - "Thinking that nobody around you would think you worth wasting even a drop of their saliva on, since you are someone incapable of interacting with the world around you. Thinking \u201CI\u2019m sure he hates me,\u201D thinking that whoever looks at you is judging you, feeling that you just know it. This thought is like a shadow: it follows you everywhere and suffocates you in front of anyone."
+  - A thought that makes you think the worst of yourself and distorts your perception of every social interaction. It turns the people around you into tiny judges of who you are, punishing you simply by being present, and makes you live in a hell created by your own mind.
+  - We spend our whole lives running from this thought. Running from every social interaction. Running from our surroundings. Running to our comfort zone, our sanctuary, where there is nobody around you and nobody to prejudge you... Yet reaching your sanctuary feels like an obstacle course full of setbacks, all while you fight your own mind and its tricks.
+  - But what would happen if... there were a person who, when keeping you company, made you feel like it was a good experience and not a judgment? What would happen if a person could make that shadow that follows you disappear? A person who cleared your mind, who restored your perception of the world to normal, who gave the color back to your life.
 --- !u!1 &2118096133927446801
 GameObject:
   m_ObjectHideFlags: 0
