@@ -9,12 +9,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6258365398790278898}
+  - component: {fileID: 7679943359474404421}
   - component: {fileID: 8353278711429970857}
   - component: {fileID: 518299717937023698}
   - component: {fileID: 8925809717200249988}
   - component: {fileID: 1961650843023405667}
+  - component: {fileID: 7843904964079489651}
   - component: {fileID: 1559938243757553320}
-  - component: {fileID: -1654611204392064472}
+  - component: {fileID: -2961054774818946350}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -38,6 +40,18 @@ Transform:
   - {fileID: 3863677152769652572}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7679943359474404421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4546717807018957190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1bb2206e1a7d894ea759414e4f7e96b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CheckpointRespawn
 --- !u!212 &8353278711429970857
 SpriteRenderer:
   serializedVersion: 3
@@ -85,7 +99,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 11
   m_MaskInteraction: 0
   m_Sprite: {fileID: 8793639957104055765, guid: 877a7b8e5eb42ba4f8544777b32d89b5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -178,6 +192,18 @@ MonoBehaviour:
   groundChecker: {fileID: 3863677152769652572}
   JumpAudio: {fileID: 8300000, guid: 3495ac1cf924deb4da43d4800b5a2b44, type: 3}
   CanPlay: 1
+--- !u!114 &7843904964079489651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4546717807018957190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50821d97f3fc5b4469746fc7864a28e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerProtection
 --- !u!95 &1559938243757553320
 Animator:
   serializedVersion: 7
@@ -200,7 +226,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &-1654611204392064472
+--- !u!114 &-2961054774818946350
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

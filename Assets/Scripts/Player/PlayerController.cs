@@ -26,6 +26,8 @@ public class BasePlayer : MonoBehaviour
     private Vector2 playerMove;
 
     public AudioClip JumpAudio;
+
+    
     private Animator animator;
     public bool CanPlay = true;
     void Start()
@@ -34,13 +36,18 @@ public class BasePlayer : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+
+
     void Update() 
     {
         animator.SetBool("isAereal", !isGround);
+
+        //if (isGround) animator.SetBool("isJumping", false);
+
     }
     void FixedUpdate()
     {
-        if (SceneManager.GetActiveScene().name == "FinalScene" || !CanPlay)
+        if (SceneManager.GetActiveScene().name == "FinalScene")
         {
             return;
         }
@@ -56,7 +63,6 @@ public class BasePlayer : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (!CanPlay) return;
         playerMove = context.ReadValue<Vector2>();
 
         if (playerMove.x > 0.05f)
@@ -75,11 +81,11 @@ public class BasePlayer : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.started && GameManager.Instance.isTransitioning) 
+        if (context.started && GameManager.Instance.isTransitioning)
         {
             GameManager.Instance.SkipBetweenScenes();
             return;
-        } 
+        }
         if (!context.performed && !CanPlay) return;
 
         if (isGround)
@@ -95,8 +101,8 @@ public class BasePlayer : MonoBehaviour
             animator.SetBool("isAereal", true);
     }
 
-    public void OnPause(InputAction.CallbackContext context) 
-    { 
+    public void OnPause(InputAction.CallbackContext context)
+    {
         if ((context.started || !UIManager.Instance.isRebinding) && !GameManager.Instance.isTransitioning)
         {
             if (UIManager.Instance.m_isOpen)
@@ -166,6 +172,7 @@ public class BasePlayer : MonoBehaviour
     {
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
         rb.AddForce(Vector2.up * data.jumpForce, ForceMode2D.Impulse);
+        //animator.SetBool("isJumping", true);
         AudioManager.Instance.PlaySFX(JumpAudio);
     }
 
