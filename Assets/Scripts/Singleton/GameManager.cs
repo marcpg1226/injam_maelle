@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     void Start() 
     {
         if (SceneManager.GetActiveScene().name == "Menu") AudioManager.Instance.PlayMusic(MainMenu);
+        textBetweenScenes = new string[SceneManager.sceneCountInBuildSettings - 1];
     }
 
     public void NextLevel() 
