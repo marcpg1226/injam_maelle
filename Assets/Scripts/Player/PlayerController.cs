@@ -103,7 +103,7 @@ public class BasePlayer : MonoBehaviour
 
     public void OnPause(InputAction.CallbackContext context)
     {
-        if ((context.started || !UIManager.Instance.isRebinding) && !GameManager.Instance.isTransitioning)
+        if ((context.started && !UIManager.Instance.isRebinding) && !GameManager.Instance.isTransitioning)
         {
             if (UIManager.Instance.m_isOpen)
             {
