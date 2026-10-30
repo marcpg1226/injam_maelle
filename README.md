@@ -1,7 +1,9 @@
 # MY LITTLE DEMON #
-## Developed by InvideogamesJam 2026 Team Maelle: Asier Rizo, Unai Almiñana, Marc Paredes, Roger de la Asunción and Sergi López. ##
+## Developed by InvideogamesJam 2026 Team Maelle: Asier Rizo, Unai Almiñana, Marc Paredes, Roger de la Asunción and Sergi López. Students from the Technological Institute from Barcelona (ITB) ##
+ <img width="200" height="100" alt="Maelle Gif" src="https://github.com/user-attachments/assets/b7397ed5-ea4f-4f9c-89ca-c1cdbfa60ff5" />
+ <img width="100" height="100" alt="image" src="https://github.com/user-attachments/assets/a472be9d-5df1-498d-b790-f74e6c22d37f" />
+ <img width="100" height="100" alt="image" src="https://github.com/user-attachments/assets/a70ac107-901e-4e1f-92c9-fbac11d2dde7" />
 
- <img width="200" height="60" alt="Maelle Gif" src="https://github.com/user-attachments/assets/b7397ed5-ea4f-4f9c-89ca-c1cdbfa60ff5" />
  
 ### My Little Demon is an indie videogame developed for the InVideogameJam 2026 organized by Delaguila Games in Catalonia, Spain 
 
