@@ -25,6 +25,7 @@
 ⚙️ <strong> Technical information </strong>:
 - Developed in Unity.
 - Only available for Windows.
+- Enter into the ich.io link of below in order to download the Unity build ➡️ Then decompress the .zip file and execute the .exe file name "Shadow2" and Enjoy playing 😀.
 
 ‼️<strong> Disclaimers: </strong>
 As we have got only some days to develop the game we have not polished the game during the days after the competition you may found:
